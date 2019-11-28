@@ -5,105 +5,51 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectID,
     ref: "user"
   },
+  tweets: [
+    {
+      type: mongoose.Schema.Types.ObjectID,
+      ref: "tweet"
+    }
+  ],
   company: {
     type: String
   },
   website: {
     type: String
   },
-  location: {
-    type: String
-  },
-  status: {
-    type: String,
-    required: true
-  },
-  skills: {
-    type: [String],
-    required: true
-  },
   bio: {
     type: String
   },
-  githubusername: {
+  location: {
     type: String
   },
-  experience: [
-    {
-      title: {
-        type: String,
-        required: true
-      },
-      company: {
-        type: String,
-        required: true
-      },
-      location: {
-        type: String
-      },
-      from: {
-        type: Date,
-        required: true
-      },
-      to: {
-        type: Date
-      },
-      current: {
-        type: Boolean,
-        default: false
-      },
-      description: {
-        type: String
-      }
-    }
-  ],
-  education: [
-    {
-      school: {
-        type: String,
-        required: true
-      },
-      degree: {
-        type: String,
-        required: true
-      },
-      fieldofstudy: {
-        type: String,
-        required: true
-      },
-      from: {
-        type: Date,
-        required: true
-      },
-      to: {
-        type: Date
-      },
-      current: {
-        type: Boolean,
-        default: false
-      },
-      description: {
-        type: String
-      }
-    }
-  ],
-  social: {
-    youtube: {
-      type: String
-    },
-    twitter: {
-      type: String
-    },
-    facebook: {
-      type: String
-    },
-    linkedin: {
-      type: String
-    },
-    instagram: {
-      type: String
-    }
+  birthDate: {
+    type: Date
   },
+  following: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectID,
+        ref: "user"
+      }
+    }
+  ],
+  follows: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectID,
+        ref: "user"
+      }
+    }
+  ],
+  likes: [
+    {
+      tweet: {
+        type: mongoose.Schema.Types.ObjectID,
+        ref: "tweet"
+      }
+    }
+  ],
   date: {
     type: Date,
     default: Date.now

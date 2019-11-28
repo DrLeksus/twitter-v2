@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const PostSchema = new Schema({
+const TweetSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "users"
@@ -16,6 +16,14 @@ const PostSchema = new Schema({
   avatar: {
     type: String
   },
+  retweets: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+      }
+    }
+  ],
   likes: [
     {
       user: {
@@ -26,13 +34,17 @@ const PostSchema = new Schema({
   ],
   comments: [
     {
+      tweet: {
+        type: Schema.Types.ObjectId,
+        ref: "tweets"
+      },
       user: {
         type: Schema.Types.ObjectId,
         ref: "users"
       },
       text: {
-        type: String,
-        required: true
+        type: String
+        // required: true
       },
       name: {
         type: String
@@ -40,10 +52,22 @@ const PostSchema = new Schema({
       avatar: {
         type: String
       },
-      date: {
-        type: Date,
-        default: Date.now
-      }
+      retweets: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: "users"
+          }
+        }
+      ],
+      likes: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: "users"
+          }
+        }
+      ]
     }
   ],
   date: {
@@ -52,4 +76,4 @@ const PostSchema = new Schema({
   }
 });
 
-module.exports = Post = mongoose.model("post", PostSchema);
+module.exports = Tweet = mongoose.model("tweet", TweetSchema);
